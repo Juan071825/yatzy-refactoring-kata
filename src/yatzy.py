@@ -1,27 +1,23 @@
 class Yatzy:
 
     @staticmethod
-    def chance(diceA, diceB, diceC, diceD, diceE):
-        sum_all_scores = 0
-        sum_all_scores += diceA
-        sum_all_scores += diceB
-        sum_all_scores += diceC
-        sum_all_scores += diceD
-        sum_all_scores += diceE
-        return sum_all_scores
-
-    '''Code smell-> Misterious Name
-       Refactoring-> Rename Variable'''
+    def chance(d1, d2, d3, d4, d5):
+        total = 0
+        total += d1
+        total += d2
+        total += d3
+        total += d4
+        total += d5
+        return total
 
     @staticmethod
-    def yatzy(dice):                    # dice = lista de 5 elementos
-        counts = [0] * (len(dice) + 1)  # 1er valor de dice * 6
-        for die in dice:                # 
-            counts[die - 1] += 1
-        for i in range(len(counts)):
-            if counts[i] == 5:
-                return 50
-        return 0
+    def yatzy(dices_points):
+        for face_dice in dices_points:
+            if dices_points[0] * 5 != sum(dices_points):
+                return 0
+            else:
+                return 50 
+
 
     @staticmethod
     def ones(d1, d2, d3, d4, d5):
