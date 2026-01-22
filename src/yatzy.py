@@ -1,14 +1,16 @@
 class Yatzy:
 
     @staticmethod
-    def chance(diceA, diceB, diceC, diceD, diceE):
-        sum_all_scores = 0
-        sum_all_scores += diceA
-        sum_all_scores += diceB
-        sum_all_scores += diceC
-        sum_all_scores += diceD
-        sum_all_scores += diceE
-        return sum_all_scores
+    def chance(*dices):
+        if len(dices) != 5:
+            return "El número de dados es incorrecto"
+        else:
+            sum_all_scores = sum(dices)
+            return sum_all_scores
+            
+    '''Code smell -> mysterious name: total
+       Refactoring -> rename variables: sum_all_scores
+       '''
 
     @staticmethod
     def yatzy(dices_points):
