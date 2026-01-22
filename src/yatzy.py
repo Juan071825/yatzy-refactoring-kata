@@ -23,53 +23,32 @@ class Yatzy:
             else:
                 return 50 
 
-    ''''''
-
     @staticmethod
     def ones(d1, d2, d3, d4, d5):
-        sum = 0
-        if (d1 == 1):
-            sum += 1
-        if (d2 == 1):
-            sum += 1
-        if (d3 == 1):
-            sum += 1
-        if (d4 == 1):
-            sum += 1
-        if (d5 == 1):
-            sum += 1
-
-        return sum
+        total_score_ones = 0
+        score_based_ones = (d1, d2, d3 ,d4, d5)
+        for pip in score_based_ones:
+            if pip == 1:
+                total_score_ones += 1
+        return total_score_ones
 
     @staticmethod
     def twos(d1, d2, d3, d4, d5):
-        sum = 0
-        if (d1 == 2):
-            sum += 2
-        if (d2 == 2):
-            sum += 2
-        if (d3 == 2):
-            sum += 2
-        if (d4 == 2):
-            sum += 2
-        if (d5 == 2):
-            sum += 2
-        return sum
+        total_score_twos = 0
+        score_based_ones = (d1, d2, d3 ,d4, d5)
+        for pip in score_based_ones:
+            if pip == 2:
+                total_score_twos += 2
+        return total_score_twos
 
     @staticmethod
     def threes(d1, d2, d3, d4, d5):
-        s = 0
-        if (d1 == 3):
-            s += 3
-        if (d2 == 3):
-            s += 3
-        if (d3 == 3):
-            s += 3
-        if (d4 == 3):
-            s += 3
-        if (d5 == 3):
-            s += 3
-        return s
+        total_score_threes = 0
+        score_based_ones = (d1, d2, d3 ,d4, d5)
+        for pip in score_based_ones:
+            if pip == 3:
+                total_score_threes += 3
+        return total_score_threes
 
     def __init__(self, d1=0, d2=0, d3=0, d4=0, _5=0):
         self.dice = [0] * 5
