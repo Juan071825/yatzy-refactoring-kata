@@ -10,7 +10,8 @@ class Yatzy:
             
     '''Code smell -> mysterious name: total
        Refactoring -> rename variables: sum_all_scores
-       '''
+       Code smell -> don't repeat your self: repeat of total += d1/d2/d3/d4/d5
+       Refactoring -> using fun:  '''
 
     @staticmethod
     def yatzy(dices_points):
