@@ -12,7 +12,7 @@ class Yatzy:
        Refactoring -> Rename variables: sum_all_scores
        Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
        Refactoring -> Using a Built-in Function: sum(dices)
-       Code smell -> Long parameter list: 
+       Code smell -> Long parameter list: (d1, d2, d3, d4, d5)
        Refactoring -> Introduce parameter object: *dices'''
 
     @staticmethod
@@ -64,6 +64,11 @@ class Yatzy:
             if face_value == 4:
                 total_score_fours += 4
         return total_score_fours
+    
+    '''Code smell -> Mysterious name: at, sum
+    Refactoring -> Rename variables: face_value, total_score_fours
+    Code smell -> 
+    Refactoring -> Introduce parameter object: *dice'''
 
     def fives(self):
         s = 0
