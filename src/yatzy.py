@@ -1,14 +1,14 @@
 class Yatzy:
 
     @staticmethod
-    def chance(d1, d2, d3, d4, d5):
-        total = 0
-        total += d1
-        total += d2
-        total += d3
-        total += d4
-        total += d5
-        return total
+    def chance(diceA, diceB, diceC, diceD, diceE):
+        sum_all_scores = 0
+        sum_all_scores += diceA
+        sum_all_scores += diceB
+        sum_all_scores += diceC
+        sum_all_scores += diceD
+        sum_all_scores += diceE
+        return sum_all_scores
 
     @staticmethod
     def yatzy(dices_points):
@@ -18,6 +18,7 @@ class Yatzy:
             else:
                 return 50 
 
+    ''''''
 
     @staticmethod
     def ones(d1, d2, d3, d4, d5):
