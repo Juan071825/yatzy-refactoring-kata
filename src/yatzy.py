@@ -8,10 +8,12 @@ class Yatzy:
             sum_all_scores = sum(dices)
             return sum_all_scores
             
-    '''Code smell -> mysterious name: total
-       Refactoring -> rename variables: sum_all_scores
-       Code smell -> don't repeat your self: repeat of total += d1/d2/d3/d4/d5
-       Refactoring -> using fun:  '''
+    '''Code smell -> Mysterious name: total
+       Refactoring -> Rename variables: sum_all_scores
+       Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
+       Refactoring -> Using a Built-in Function: sum(dices)
+       Code smell -> Long parameter list: 
+       Refactoring -> Introduce parameter object: *dices'''
 
     @staticmethod
     def yatzy(dices_points):
