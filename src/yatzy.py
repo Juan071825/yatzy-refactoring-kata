@@ -13,12 +13,8 @@ class Yatzy:
        Refactoring -> Introduce parameter object: *dices'''
 
     @staticmethod
-    def yatzy(*dices_points):
-        for face_dice in dices_points:
-            if dices_points[0] * 5 != sum(dices_points):
-                return 0
-            else:
-                return 50 
+    def yatzy(dices_points): 
+        return 50 if dices_points[0] * 5 == sum(dices_points) else 0 
 
     @staticmethod
     def ones(*dices):
@@ -36,14 +32,6 @@ class Yatzy:
     Code smell -> don't repeat your self
     Refactoring -> using a for loop and an if'''
 
-    def __init__(self, d1=0, d2=0, d3=0, d4=0, _5=0):
-        self.dice = [0] * 5
-        self.dice[0] = d1
-        self.dice[1] = d2
-        self.dice[2] = d3
-        self.dice[3] = d4
-        self.dice[4] = _5
-
     def fours(*dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.FOUR.value)
     
@@ -52,10 +40,10 @@ class Yatzy:
     Code smell -> 
     Refactoring -> Introduce parameter object: *dice'''
 
-    def fives(*dices):
+    def fives(dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.FIVE.value)
 
-    def sixes(*dices):
+    def sixes(dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.SIX.value)
 
     '''
