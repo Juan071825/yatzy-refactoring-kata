@@ -64,41 +64,30 @@ class Yatzy:
 
     def score_pair(self, *dices):
         pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
-        pip_count = {}
-        for pip in pips:
-            pip_count[pip] = dices.count(pip)
+
+        pip_count = {pip: dices.count(pip) for pip in pips}
         
-        pairs = []
-        for pip, count in pip_count.items():
-            if count >= 2:
-                pairs.append(pip)
-                
+        pairs = [pip for pip, count in pip_count.items() if count >= 2]
+
         return max(pairs) * 2 if pairs else 0
-
-        
-
 
 
 
     @staticmethod
-    def two_pair(d1, d2, d3, d4, d5):
-        counts = [0] * 6
-        counts[d1 - 1] += 1
-        counts[d2 - 1] += 1
-        counts[d3 - 1] += 1
-        counts[d4 - 1] += 1
-        counts[d5 - 1] += 1
-        n = 0
-        score = 0
-        for i in range(6):
-            if (counts[6 - i - 1] >= 2):
-                n = n + 1
-                score += (6 - i)
-
-        if (n == 2):
-            return score * 2
-        else:
+    def two_pair(*dices):
+        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        
+        pip_count = {pip: dices.count(pip) for pip in pips}
+        
+        pairs_value = [pip for pip, count in pip_count.items() if count >= 2]
+            
+        if len(pairs_value) < 2:
             return 0
+        
+        two_biggest_pairs = sorted(pairs_value)[-2:]
+        return sum(two_biggest_pairs) * 2
+
+
 
     @staticmethod
     def four_of_a_kind(_1, _2, d3, d4, d5):
