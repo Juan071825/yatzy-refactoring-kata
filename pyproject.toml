@@ -1,5 +1,5 @@
 [project]
-name = "refactorizacion yatzy"
+name = "refactorizacion-yatzy"
 version = "0.1.0"
 dependencies = [
     "pytest",
