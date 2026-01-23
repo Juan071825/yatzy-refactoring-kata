@@ -51,7 +51,7 @@ class Yatzy:
     '''
 
     def score_pair(self, *dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
         
         pairs = [pip for pip, count in pip_count.items() if count >= 2]
@@ -62,7 +62,7 @@ class Yatzy:
 
     @staticmethod
     def two_pair(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
         
         pairs_value = [pip for pip, count in pip_count.items() if count >= 2]
@@ -77,7 +77,7 @@ class Yatzy:
 
     @staticmethod
     def four_of_a_kind(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
 
         for pip,count in pip_count.items():
@@ -90,7 +90,7 @@ class Yatzy:
 
     @staticmethod
     def three_of_a_kind(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
 
         for pip,count in pip_count.items():
@@ -103,7 +103,7 @@ class Yatzy:
 
     @staticmethod
     def smallStraight(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
 
         sequence_sum = sum(pip * count for pip, count in pip_count.items())
@@ -117,7 +117,7 @@ class Yatzy:
 
     @staticmethod
     def largeStraight(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
 
         sequence_sum = sum(pip * count for pip, count in pip_count.items())
@@ -130,7 +130,7 @@ class Yatzy:
 
     @staticmethod
     def fullHouse(*dices):
-        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
     
         full_house = [count for pip, count in pip_count.items() if count == 3 or count == 2]
