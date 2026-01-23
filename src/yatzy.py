@@ -64,7 +64,6 @@ class Yatzy:
 
     def score_pair(self, *dices):
         pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
-
         pip_count = {pip: dices.count(pip) for pip in pips}
         
         pairs = [pip for pip, count in pip_count.items() if count >= 2]
@@ -76,7 +75,6 @@ class Yatzy:
     @staticmethod
     def two_pair(*dices):
         pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
-        
         pip_count = {pip: dices.count(pip) for pip in pips}
         
         pairs_value = [pip for pip, count in pip_count.items() if count >= 2]
@@ -90,17 +88,17 @@ class Yatzy:
 
 
     @staticmethod
-    def four_of_a_kind(_1, _2, d3, d4, d5):
-        tallies = [0] * 6
-        tallies[_1 - 1] += 1
-        tallies[_2 - 1] += 1
-        tallies[d3 - 1] += 1
-        tallies[d4 - 1] += 1
-        tallies[d5 - 1] += 1
-        for i in range(6):
-            if (tallies[i] >= 4):
-                return (i + 1) * 4
+    def four_of_a_kind(*dices):
+        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pip_count = {pip: dices.count(pip) for pip in pips}
+
+        for pip,count in pip_count.items():
+            if count >= 4:
+                return pip * 4
+        
         return 0
+
+
 
     @staticmethod
     def three_of_a_kind(d1, d2, d3, d4, d5):
