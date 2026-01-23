@@ -2,7 +2,8 @@ class Yatzy:
 
     @staticmethod
     def chance(*dices):
-            sum_all_scores = sum(dices)
+        sum_all_scores = sum(dices)
+        return sum_all_scores
     '''Code smell -> Mysterious name: total
        Refactoring -> Rename variables: sum_all_scores
        Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
@@ -11,12 +12,8 @@ class Yatzy:
        Refactoring -> Introduce parameter object: *dices'''
 
     @staticmethod
-    def yatzy(*dices_points):
-        for face_dice in dices_points:
-            if dices_points[0] * 5 != sum(dices_points):
-                return 0
-            else:
-                return 50 
+    def yatzy(dices_points): 
+        return 50 if dices_points[0] * 5 == sum(dices_points) else 0
 
     @staticmethod
     def ones(d1, d2, d3, d4, d5):
@@ -45,16 +42,8 @@ class Yatzy:
                 total_score_threes += 3
         return total_score_threes
 
-    def __init__(self, d1=0, d2=0, d3=0, d4=0, _5=0):
-        self.dice = [0] * 5
-        self.dice[0] = d1
-        self.dice[1] = d2
-        self.dice[2] = d3
-        self.dice[3] = d4
-        self.dice[4] = _5
-
     def fours(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 4)
+       return sum(face_dice for face_dice in dices if face_dice == 4)
     
     '''Code smell -> Mysterious name: at, sum
     Refactoring -> Rename variables: face_value, total_score_fours
@@ -62,10 +51,10 @@ class Yatzy:
     Refactoring -> Introduce parameter object: *dice'''
 
     def fives(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 5)
+       return sum(face_dice for face_dice in dices if face_dice == 5)
 
     def sixes(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 6)
+        return sum(face_dice for face_dice in dices if face_dice == 6)
 
     '''
     lo hice por que era literalmente lo mismo 

@@ -1,56 +1,80 @@
+import pytest 
 from src.yatzy import Yatzy
 
 # These unit tests can be run using the py.test framework
 # available from http://pytest.org/
 
-def test_chance_scores_sum_of_all_dice():
-    expected = 15
-    actual = Yatzy.chance(2, 3, 4, 5, 1)
-    assert expected == actual
-    assert 16 == Yatzy.chance(3, 3, 4, 5, 1)
 
 
-def test_yatzy_scores_50():
-    expected = 50
-    actual = Yatzy.yatzy([4, 4, 4, 4, 4])
-    assert expected == actual
-    assert 50 == Yatzy.yatzy([6, 6, 6, 6, 6])
-    assert 0 == Yatzy.yatzy([6, 6, 6, 6, 3])
+@pytest.mark.parametrize("dices, expected", [
+    ((2,3,4,5,1), 15),
+    ((3,3,4,5,1), 16),
+])
+def test_chance_score_sum_dice(dices, expected):
+    assert Yatzy.chance(*dices) == expected
 
 
-def test_1s():
-    assert Yatzy.ones(1, 2, 3, 4, 5) == 1
-    assert 2 == Yatzy.ones(1, 2, 1, 4, 5)
-    assert 0 == Yatzy.ones(6, 2, 2, 4, 5)
-    assert 4 == Yatzy.ones(1, 2, 1, 1, 1)
+
+@pytest.mark.parametrize("dice, expected", [
+    ([4, 4, 4, 4, 4], 50),
+    ([6, 6, 6, 6, 6], 50),
+    ([6, 6, 6, 6, 3], 0),
+])
+def test_yatzy_scores_50(dice, expected):
+    assert Yatzy.yatzy(dice) == expected
 
 
-def test_2s():
-    assert 4 == Yatzy.twos(1, 2, 3, 2, 6)
-    assert 10 == Yatzy.twos(2, 2, 2, 2, 2)
+@pytest.mark.parametrize("dice, expected", [
+    ([1, 2, 3, 4, 5], 1),
+    ([1, 2, 1, 4, 5], 2),
+    ([6, 2, 2, 4, 5], 0),
+    ([1, 2, 1, 1, 1], 4),
+])
+def test_ones(dice, expected):
+    assert Yatzy.ones(*dice) == expected
 
 
-def test_threes():
-    assert 6 == Yatzy.threes(1, 2, 3, 2, 3)
-    assert 12 == Yatzy.threes(2, 3, 3, 3, 3)
+@pytest.mark.parametrize("dice, expected", [
+    ([1, 2, 3, 2, 6], 4),
+    ([2, 2, 2, 2, 2], 10),
+])  
+def test_two(dice, expected):
+    assert Yatzy.twos(*dice) == expected 
 
 
-def test_fours_test():
-    assert 12 == Yatzy.fours(4, 4, 4, 5, 5)
-    assert 8 == Yatzy.fours(4, 4, 5, 5, 5)
-    assert 4 == Yatzy.fours(4, 5, 5, 5, 5)
+@pytest.mark.parametrize("dice, expected", [
+    ([1, 2, 3, 2, 3], 6),
+    ([2, 3, 3, 3, 3], 12),
+])
+def test_threes(dice, expected):
+    assert Yatzy.threes(*dice) == expected
 
+@pytest.mark.parametrize("dice, expected", [
+    ([4, 4, 4, 5, 5], 12),
+    ([4, 4, 5, 5, 5], 8),
+    ([4, 5, 5, 5, 5], 4),
+])
 
-def test_fives():
-    assert 10 == Yatzy(4, 4, 4, 5, 5).fives()
-    assert 15 == Yatzy(4, 4, 5, 5, 5).fives()
-    assert 20 == Yatzy(4, 5, 5, 5, 5).fives()
+def test_fours_test(dice, expected):
+    assert Yatzy.fours(*dice) == expected
 
+@pytest.mark.parametrize("dice, expected", [
+    [(4, 4, 4, 5, 5), 10],
+    [(4, 4, 5, 5, 5), 15],
+    [(4, 5, 5, 5, 5), 20],
+])
+def test_fives(dice, expected):
+    assert Yatzy.fives(*dice) == expected
+    
 
-def test_sixes_test():
-    assert 0 == Yatzy(4, 4, 4, 5, 5).sixes()
-    assert 6 == Yatzy(4, 4, 6, 5, 5).sixes()
-    assert 18 == Yatzy(6, 5, 6, 6, 5).sixes()
+@pytest.mark.parametrize("dice, expected", [
+    [(4, 5, 4, 5, 4), 0],
+    [(4, 4, 5, 5, 6), 6],
+    [(4, 5, 6, 6, 6), 18],
+])
+def test_sixes_test(dice, expected):
+    assert Yatzy.sixes(*dice) == expected
+    
 
 
 def test_one_pair():
