@@ -2,7 +2,7 @@ class Yatzy:
 
     @staticmethod
     def chance(*dices):
-            sum_all_scores = sum(dices)
+        return sum(dices)
     '''Code smell -> Mysterious name: total
        Refactoring -> Rename variables: sum_all_scores
        Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
@@ -19,31 +19,20 @@ class Yatzy:
                 return 50 
 
     @staticmethod
-    def ones(d1, d2, d3, d4, d5):
-        total_score_ones = 0
-        score_based_ones = (d1, d2, d3 ,d4, d5)
-        for pip in score_based_ones:
-            if pip == 1:
-                total_score_ones += 1
-        return total_score_ones
+    def ones(*dices):
+        return sum(face_dice for face_dice in dices if face_dice == 1)
 
     @staticmethod
-    def twos(d1, d2, d3, d4, d5):
-        total_score_twos = 0
-        score_based_ones = (d1, d2, d3 ,d4, d5)
-        for pip in score_based_ones:
-            if pip == 2:
-                total_score_twos += 2
-        return total_score_twos
+    def twos(*dices):
+        return sum(face_dice for face_dice in dices if face_dice == 2)
 
     @staticmethod
-    def threes(d1, d2, d3, d4, d5):
-        total_score_threes = 0
-        score_based_ones = (d1, d2, d3 ,d4, d5)
-        for pip in score_based_ones:
-            if pip == 3:
-                total_score_threes += 3
-        return total_score_threes
+    def threes(*dices):
+        return sum(face_dice for face_dice in dices if face_dice == 3)
+    
+    '''In ones, twos, threes:
+    Code smell -> don't repeat your self
+    Refactoring -> using a for loop and an if'''
 
     def __init__(self, d1=0, d2=0, d3=0, d4=0, _5=0):
         self.dice = [0] * 5
@@ -54,7 +43,7 @@ class Yatzy:
         self.dice[4] = _5
 
     def fours(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 4)
+        return sum(face_dice for face_dice in dices if face_dice == 4)
     
     '''Code smell -> Mysterious name: at, sum
     Refactoring -> Rename variables: face_value, total_score_fours
@@ -62,10 +51,10 @@ class Yatzy:
     Refactoring -> Introduce parameter object: *dice'''
 
     def fives(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 5)
+        return sum(face_dice for face_dice in dices if face_dice == 5)
 
     def sixes(*dices):
-        sum(face_dice for face_dice in dices if face_dice == 6)
+        return sum(face_dice for face_dice in dices if face_dice == 6)
 
     '''
     lo hice por que era literalmente lo mismo 
@@ -83,6 +72,8 @@ class Yatzy:
             if (counts[6 - at - 1] == 2):
                 return (6 - at) * 2
         return 0
+
+
 
     @staticmethod
     def two_pair(d1, d2, d3, d4, d5):
