@@ -1,3 +1,5 @@
+from src.pips import Pips
+
 class Yatzy:
 
     @staticmethod
@@ -20,15 +22,15 @@ class Yatzy:
 
     @staticmethod
     def ones(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 1)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.ONE.value)
 
     @staticmethod
     def twos(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 2)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.TWO.value)
 
     @staticmethod
     def threes(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 3)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.THREE.value)
     
     '''In ones, twos, threes:
     Code smell -> don't repeat your self
@@ -43,7 +45,7 @@ class Yatzy:
         self.dice[4] = _5
 
     def fours(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 4)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.FOUR.value)
     
     '''Code smell -> Mysterious name: at, sum
     Refactoring -> Rename variables: face_value, total_score_fours
@@ -51,27 +53,30 @@ class Yatzy:
     Refactoring -> Introduce parameter object: *dice'''
 
     def fives(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 5)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.FIVE.value)
 
     def sixes(*dices):
-        return sum(face_dice for face_dice in dices if face_dice == 6)
+        return sum(face_dice for face_dice in dices if face_dice == Pips.SIX.value)
 
     '''
     lo hice por que era literalmente lo mismo 
     '''
 
-    def score_pair(self, d1, d2, d3, d4, d5):
-        counts = [0] * 6
-        counts[d1 - 1] += 1
-        counts[d2 - 1] += 1
-        counts[d3 - 1] += 1
-        counts[d4 - 1] += 1
-        counts[d5 - 1] += 1
-        at = 0
-        for at in range(6):
-            if (counts[6 - at - 1] == 2):
-                return (6 - at) * 2
-        return 0
+    def score_pair(self, *dices):
+        pips=(Pips.ONE.value, Pips.TWO.value, Pips.THREE.value, Pips.FOUR.value, Pips.FIVE.value, Pips.SIX.value)
+        pip_count = {}
+        for pip in pips:
+            pip_count[pip] = dices.count(pip)
+        
+        pairs = []
+        for pip, count in pip_count.items():
+            if count >= 2:
+                pairs.append(pip)
+                
+        return max(pairs) * 2 if pairs else 0
+
+        
+
 
 
 
