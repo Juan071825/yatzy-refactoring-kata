@@ -2,11 +2,8 @@ class Yatzy:
 
     @staticmethod
     def chance(*dices):
-        if len(dices) != 5:
-            return "El número de dados es incorrecto"
-        else:
-            sum_all_scores = sum(dices)
-            return sum_all_scores
+        sum_all_scores = sum(dices)
+        return sum_all_scores
             
     '''Code smell -> Mysterious name: total
        Refactoring -> Rename variables: sum_all_scores
