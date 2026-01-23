@@ -2,9 +2,7 @@ class Yatzy:
 
     @staticmethod
     def chance(*dices):
-        sum_all_scores = sum(dices)
-        return sum_all_scores
-            
+            sum_all_scores = sum(dices)
     '''Code smell -> Mysterious name: total
        Refactoring -> Rename variables: sum_all_scores
        Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
@@ -13,7 +11,7 @@ class Yatzy:
        Refactoring -> Introduce parameter object: *dices'''
 
     @staticmethod
-    def yatzy(dices_points):
+    def yatzy(*dices_points):
         for face_dice in dices_points:
             if dices_points[0] * 5 != sum(dices_points):
                 return 0
@@ -56,31 +54,22 @@ class Yatzy:
         self.dice[4] = _5
 
     def fours(*dices):
-        total_score_fours = 0
-        for face_value in dices:
-            if face_value == 4:
-                total_score_fours += 4
-        return total_score_fours
+        sum(face_dice for face_dice in dices if face_dice == 4)
     
     '''Code smell -> Mysterious name: at, sum
     Refactoring -> Rename variables: face_value, total_score_fours
     Code smell -> 
     Refactoring -> Introduce parameter object: *dice'''
 
-    def fives(self):
-        s = 0
-        i = 0
-        for i in range(len(self.dice)):
-            if (self.dice[i] == 5):
-                s = s + 5
-        return s
+    def fives(*dices):
+        sum(face_dice for face_dice in dices if face_dice == 5)
 
-    def sixes(self):
-        sum = 0
-        for at in range(len(self.dice)):
-            if (self.dice[at] == 6):
-                sum = sum + 6
-        return sum
+    def sixes(*dices):
+        sum(face_dice for face_dice in dices if face_dice == 6)
+
+    '''
+    lo hice por que era literalmente lo mismo 
+    '''
 
     def score_pair(self, d1, d2, d3, d4, d5):
         counts = [0] * 6
