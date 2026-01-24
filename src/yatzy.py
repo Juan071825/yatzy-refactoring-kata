@@ -5,16 +5,23 @@ class Yatzy:
     @staticmethod
     def chance(*dices):
         return sum(dices)
-    '''Code smell -> Mysterious name: total
-       Refactoring -> Rename variables: sum_all_scores
-       Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
-       Refactoring -> Using a Built-in Function: sum(dices)
-       Code smell -> Long parameter list: (d1, d2, d3, d4, d5)
-       Refactoring -> Introduce parameter object: *dices'''
+    '''
+    Code smell -> Mysterious name: total
+    Refactoring -> Rename variables: sum_all_scores
+    Code smell -> Don't repeat your self: repeat of total += d1/d2/d3/d4/d5
+    Refactoring -> Using a Built-in Function: sum(dices)
+    Code smell -> Long parameter list: (d1, d2, d3, d4, d5)
+    Refactoring -> Introduce parameter object: *dices
+    '''
 
     @staticmethod
     def yatzy(dices_points): 
         return 50 if dices_points[0] * 5 == sum(dices_points) else 0 
+
+    '''
+    Code smell -> Unnecesary complexity
+    Refactoring -> rewrite the code with a more simple implementation
+    '''
 
     @staticmethod
     def ones(*dices):
@@ -28,17 +35,23 @@ class Yatzy:
     def threes(*dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.THREE.value)
     
-    '''In ones, twos, threes:
+    '''
+    In ones, twos, threes:
     Code smell -> don't repeat your self
-    Refactoring -> using a for loop and an if'''
+    Refactoring -> using a for loop and an if
+    Code smell -> Long parameter list
+    Refactoring -> Introduce parameter object: *dice
+    '''
 
     def fours(*dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.FOUR.value)
     
-    '''Code smell -> Mysterious name: at, sum
+    '''
+    Code smell -> Mysterious name: at, sum
     Refactoring -> Rename variables: face_value, total_score_fours
-    Code smell -> 
-    Refactoring -> Introduce parameter object: *dice'''
+    Code smell -> Long parameter list
+    Refactoring -> Introduce parameter object: *dice
+    '''
 
     def fives(dices):
         return sum(face_dice for face_dice in dices if face_dice == Pips.FIVE.value)
@@ -58,7 +71,14 @@ class Yatzy:
 
         return max(pairs) * 2 if pairs else 0
 
-
+    '''
+    Code smell -> don't repeat your self
+    Refactoring -> using a for loop and an if
+    Code smell -> Mysterious name: at
+    Refactoring -> Rename variables using good names
+    Code smell -> Long parameter list
+    Refactoring -> Introduce parameter object: *dice
+    '''
 
     @staticmethod
     def two_pair(*dices):
@@ -73,7 +93,14 @@ class Yatzy:
         two_biggest_pairs = sorted(pairs_value)[-2:]
         return sum(two_biggest_pairs) * 2
 
-
+    '''
+    Code smell -> don't repeat your self
+    Refactoring -> using a for loop and an if
+    Code smell -> Mysterious name: n
+    Refactoring -> Rename variables using good names
+    Code smell -> Long parameter list
+    Refactoring -> Introduce parameter object: *dice
+    '''
 
     @staticmethod
     def four_of_a_kind(*dices):
@@ -111,8 +138,7 @@ class Yatzy:
         if sequence_sum == 15:
             return sequence_sum
         return 0
-        
-
+   
 
 
     @staticmethod
@@ -139,4 +165,10 @@ class Yatzy:
             return sum(pip * count for pip, count in pip_count.items())
         return 0
                 
-
+    '''
+    In four_of_a_kind, three_of_a_kind, smallStraight, largeStraight, fullHouse
+    Code smell -> don't repeat your self
+    Refactoring -> using a for loop and an if
+    Code smell -> Long parameter list
+    Refactoring -> Introduce parameter object: *dice
+    '''
