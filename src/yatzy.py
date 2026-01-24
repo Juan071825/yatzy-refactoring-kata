@@ -161,7 +161,7 @@ class Yatzy:
         pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
     
-        full_house = [count for pip, count in pip_count.items() if count == 3 or count == 2]
+        full_house = [count for pip, count in pip_count.items() if count in (2,3)]
 
         if sum(full_house) == 5:
             return sum(pip * count for pip, count in pip_count.items())
