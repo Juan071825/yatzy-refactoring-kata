@@ -63,10 +63,13 @@ class Yatzy:
     lo hice por que era literalmente lo mismo 
     '''
 
-    def score_pair(self, *dices):
-        pips= (pip.value for pip in Pips)
+    @staticmethod
+    def score_pair(*dices):
+
+        pips = Pips.values()
+
         pip_count = {pip: dices.count(pip) for pip in pips}
-        
+
         pairs = [pip for pip, count in pip_count.items() if count >= 2]
 
         return max(pairs) * 2 if pairs else 0
@@ -103,19 +106,6 @@ class Yatzy:
     '''
 
     @staticmethod
-    def four_of_a_kind(*dices):
-        pips= (pip.value for pip in Pips)
-        pip_count = {pip: dices.count(pip) for pip in pips}
-
-        for pip,count in pip_count.items():
-            if count >= 4:
-                return pip * 4
-        
-        return 0
-
-
-
-    @staticmethod
     def three_of_a_kind(*dices):
         pips= (pip.value for pip in Pips)
         pip_count = {pip: dices.count(pip) for pip in pips}
@@ -123,6 +113,18 @@ class Yatzy:
         for pip,count in pip_count.items():
             if count >= 3:
                 return pip * 3
+        
+        return 0
+    
+
+    @staticmethod
+    def four_of_a_kind(*dices):
+        pips= (pip.value for pip in Pips)
+        pip_count = {pip: dices.count(pip) for pip in pips}
+
+        for pip,count in pip_count.items():
+            if count >= 4:
+                return pip * 4
         
         return 0
 
